@@ -1,0 +1,13 @@
+services:
+  transcoder:
+    build: .
+    ports:
+      - "8787:8787"
+    environment:
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS}
+      STREAM_ORIGINS: ${STREAM_ORIGINS}
+    volumes:
+      - stream-cache:/streams
+    restart: unless-stopped
+volumes:
+  stream-cache:
